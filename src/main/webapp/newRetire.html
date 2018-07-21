@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="full-screen" content="yes">
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<head>
+		 <title>离退休人员自助查询打印</title>
+         <link rel="stylesheet" href="css/bootstrap.min.css">
+
+	</head>
+	<style type="text/css">
+	  body{
+         width:1280px;
+         height:1024px;
+         text-align: center;
+         background      :url(image/back.png) no-repeat;
+        background-size   :100% 100%;
+	  }
+	  #header{
+	  	width:100%;
+	  	height:20%;
+		  background        :url(image/background.PNG) no-repeat;
+		  background-size   :cover;
+
+	  }
+	   #title_picture{
+          	width             :19%;
+          	height            :100%;
+          	background        :url(image/icon.png);
+          	background-size   :cover;
+          	display           : inline-block;
+            float:left;
+  
+          }
+
+           #title_name{
+             float:left;
+             display    :inline-block;
+          	font-family:YouYuan;
+           height:204px;
+            line-height: 204px;
+         /*   margin-left: 360px;*/
+            font-size: 50px;
+            text-align: center;
+            font-weight: bold;
+          }
+          #content{
+             width:100%;
+             height:60%;
+          }
+          #leftBox,#rightBox{
+          	display: inline-block;
+          	width:30%;
+          	height:70%;
+          	float: left;
+          	border:1px solid black;
+          	margin-left:12%;
+          	margin-right:5%;
+          	margin-top: 8%;
+          	border:2px solid #f0ad4e;
+          	/*background: #eea236;*/
+          	background-color:rgba(255,127,80,0.9);
+          	border-radius: 10px;
+          	-webkit-transition: all .5s ease-out;
+            transition: all .5s ease-out;
+          }
+
+          #leftBox:hover, #rightBox:hover{
+          	 -webkit-transform: translateY(-8px);
+            -ms-transform: translateY(-8px);
+            transform: translateY(-8px);
+            -webkit-box-shadow: 0 0 10px #999;
+            box-shadow: 0 0 10px #999;
+            -webkit-transition: all .5s ease-out;
+            transition: all .5s ease-out;
+          }
+          #card{
+          	width:40%;
+          	height:30%;
+          	background        :url(image/card.png);
+          	background-size   :cover;
+          	color:black;
+          	text-align: center;
+          	margin:auto;
+          	margin-top: 30%;
+
+          }
+          #read{
+          	font-family:YouYuan;
+          	font-size: 40px;
+          	font-weight: bold;
+          	color:black;
+          }
+           #inputcard{
+          	width:40%;
+          	height:30%;
+          	background        :url(image/write.png);
+          	background-size   :cover;
+          	color:black;
+          	text-align: center;
+          	margin:auto;
+          	margin-top: 30%;
+          }
+          #write{
+          	font-family:YouYuan;
+          	font-size: 40px;
+          	font-weight: bold;
+          	color:black;
+          }
+          #footer{
+          	width:90%;
+          	font-size:25px;
+          	background-color:rgba(255,130,71,0.9);
+          	-webkit-box-shadow: 0 0 10px #999;
+            box-shadow: 0 0 10px #999;
+            border-radius: 10px;
+            margin:auto;
+           /* opacity: 0.4;*/
+          }
+		 #footer p{
+			 margin: 0;padding-bottom: 1em; margin-left: 2em; text-align:left;
+		 }
+    </style>
+	<body>
+
+		<div id="header">
+			<div id="title_picture"></div>
+            <div id="title_name">武汉理工大学离退休人员工资自助查询机</div>
+		</div>
+		<audio id="beep-two"  preload="auto" height="0px"; width="0px"; >
+			<source src="audio/beep.mp3" controls></source>
+			<!--<source src="/audio/beep.ogg" controls></source>-->
+		</audio>
+		<div id="content">
+			<div id="leftBox" onclick="click1()">
+            <div id="card"></div>
+            <span id="read" >读卡</span>
+			</div>
+			<div id="rightBox" onclick="click2()">
+			 <div id="inputcard"></div>
+            <span id="write">输入卡号</span>
+            </div>
+		</div>
+       <footer id="footer">
+           <b> 登录说明:</b>
+           <p>1.请使用读取【校园卡】或输入校园卡号和密码【默认身份证后六位】的方式进行查询</p>
+           <p>2.如果存在不能登陆或者查询结果有误的情况，请联系离退休处工作人员</p>
+       </footer>
+	</body>
+<script type="text/javascript">
+	function click1() {
+        $("#beep-two")[0].play();
+        window.location.href='readCardNew.html'
+    }
+    function click2() {
+        $("#beep-two")[0].play();
+        window.location.href='writeCard.html'
+    }
+</script>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
+<link rel="stylesheet" href="css/alert.css">
+<link rel="stylesheet" href="css/keyboard.css">
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/alert.js"></script>
+	<head>
+		 <title>离退休人员自助查询打印</title>
+         <link rel="stylesheet" href="css/bootstrap.min.css">
+	</head>
+	<style type="text/css">
+	  body{
+         width:1280px;
+         height:1024px;
+		  background      :url(image/back.png) no-repeat;
+		  background-size   :100% 100%;
+         text-align: center;
+	  }
+	  #header{
+	  	width:100%;
+	  	height:20%;
+		  background        :url(image/background1.PNG);
+		  background-size   :cover;
+	  }
+	  #title_picture{
+		  width             :19%;
+		  height            :100%;
+		  background        :url(image/icon.png);
+		  background-size   :cover;
+		  display           : inline-block;
+		  float:left;
+
+	  }
+           #title_name{
+            float:left;
+            display    :inline-block;
+          	font-family:YouYuan;
+           height:204px;
+            line-height: 204px;
+            font-size: 50px;
+            text-align: center;
+            font-weight: bold;
+          }
+	  h1{
+		  font-weight: bold;
+		  text-align: center;
+		  margin-bottom: 0;
+		  border-radius: 10px;
+		  margin-left: 30px;
+		  font-size: 30px;
+		  line-height: 50px;
+
+
+	  }
+
+          #content{
+             width:100%;
+             height:50%;
+             text-align: center;
+          }
+          #videoBox{
+          	width:80%;
+          	height:90%;
+          	margin:auto;
+          	margin-top: 5%;
+          	background-color:rgba(176,196,222,0.9);
+          	-webkit-box-shadow: 0 0 10px #999;
+            box-shadow: 0 0 10px #999;
+            border-radius: 10px;
+          }
+          #footer{
+            width:90%;
+            font-size:25px;
+            background-color:rgba(176,196,222,0.9);
+            -webkit-box-shadow: 0 0 10px #999;
+            box-shadow: 0 0 10px #999;
+            border-radius: 10px;
+            margin:auto;
+          }
+	  #footer p{
+		  margin: 0;padding-bottom: 1em; margin-left: 2em; text-align:left;
+	  }
+    </style>
+	<body>
+	<span id="app"></span>
+		<div id="header">
+			<div  id="title_picture"></div>
+            <div id="title_name">武汉理工大学离退休人员工资自助查询机</div>
+		</div>
+	<audio id="beep-two"  preload="auto" height="0px"; width="0px"; >
+		<source src="audio/shuaka.mp3" controls></source>
+	</audio>
+	<h1 class="i_button" type="button" onclick="history.back()" style="width: 180px; display: block;height: 50px; opacity: 1;  background-color: rgba(255,126,0,1);border: 1px solid #ddd;box-shadow: 2px 4px 5px #888888;"> <返回 </h1>
+		<div id="content">
+			<div id="videoBox">
+				<video width="500" height="400" style="margin: auto;margin-top: 25px" controls="controls" autoplay="autoplay" loop="loop">
+					<source src="image/readcard.mp4" type="video/mp4" />
+				</video>
+          </div>
+		</div>
+	<footer id="footer">
+		<b> 登录说明:</b>
+		<p>1.请使用读取【校园卡】或输入校园卡号和密码【默认身份证后六位】的方式进行查询</p>
+		<p>2.如果存在不能登陆或者查询结果有误的情况，请联系离退休处工作人员</p>
+	</footer>
+	</body>
+<script type="text/javascript">
+        $("#beep-two")[0].play();
+	var time=0;
+    var code;
+    var video2='<video width="500" height="400" style="margin: auto;margin-top: 25px" controls="controls" autoplay="autoplay" loop="loop">'+
+            '<source src="'+'image/readcard.mp4'+'"type="video/mp4" />'+
+			+'</video>';
+         $("#videoBox").html(video2);
+    $.ajax({
+            url: "user/init.do",
+            type: "GET",
+            async: true,
+            success: function (res) {
+                if(res.status==1){
+                    alert("读卡器初始化失败","3000");
+                }else {
+                    setInterval(function getData(){
+                            time+=1;
+                            if(time==20){
+                                window.location.href="newRetire.html";
+                            }
+                            $.ajax({
+                                    url: "user/read.do",
+                                    type: "GET",
+                                    async: false,
+                                    success: function (res) {
+                                        console.log(code);
+                                        if(res.msg=="非离退休人员"){
+                                            alert("非离退休人员",1000)
+										}else if(res.msg=="人员代码读取成功"){
+                                            code=res.data;
+                                            sessionStorage.setItem("readcode",code);
+                                            window.location.href="data_Table.html?1";
+										}
+                                    }
+                                }
+                            )
+                        }
+                        ,1000)
+                }
+                }
+            }
+    )
+</script>
+</html>

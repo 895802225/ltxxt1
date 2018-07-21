@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/alert.css">
+<link rel="stylesheet" href="css/keyboard.css">
+<link rel="stylesheet" href="css/button.css">
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/alert.js"></script>
+<script type="text/javascript" src="js/keyboard.js"></script>
+	<head>
+		 <title>离退休人员自助查询打印</title>
+	</head>
+	<style type="text/css">
+	  body{
+         width:1280px;
+         height:1024px;
+          background      :url(image/back.png) no-repeat;
+          background-size   :100% 100%;
+         text-align: center;
+	  }
+      #header{
+          width:100%;
+          height:20%;
+          background        :url(image/background2.PNG);
+          background-size   :cover;
+      }
+	   #title_picture{
+           width             :19%;
+          	height            :100%;
+          	background        :url(image/icon.png);
+          	background-size   :cover;
+          	display           : inline-block;
+            float:left;
+          }
+           #title_name{
+            float:left;
+            display    :inline-block;
+          	font-family:YouYuan;
+           height:204px;
+            line-height: 204px;
+            font-size: 50px;
+            text-align: center;
+            font-weight: bold;
+             text-shadow: 0 0 10px #FFEC8B;
+          }
+          #content{
+             width:100%;
+             height:60%;
+          }
+          #showBox{
+            float:left;
+            width:35%;
+            height:70%;
+            margin-top: 3%;
+            margin-left: 32%;
+            background:#FFEC8B;
+            -webkit-box-shadow: 0 0 10px #999;
+            box-shadow: 0 0 10px #999;
+            border:1px solid #FFEC8B;
+            border-radius:5px; 
+          }
+          h1{
+            font-weight: bold;
+            text-align: left;
+              margin-bottom: 0;
+              border-radius: 10px;
+              margin-left: 30px;
+              font-size: 30px;
+              line-height: 50px;
+              background-color: rgba(255,127,80,1);
+
+          }
+         #cardNum{
+          margin-top: 15%;
+         }
+          .w{
+          display:block;
+          width:100%;
+          height: 30%;
+          text-align: center;
+          font-weight: bold;
+         }
+         .wrap{
+          margin:auto;
+          width:90%;
+          height:100px;
+          text-align: center;
+          border:1px solid #FFEC8B;
+          border-radius: 20px;
+         }
+         .wrap:hover{
+           -webkit-transform: translateY(-8px);
+  -ms-transform: translateY(-8px);
+  transform: translateY(-8px);
+  -webkit-box-shadow: 0 0 10px #FFC125;
+  box-shadow: 0 0 10px #FFC125;
+  -webkit-transition: all .5s ease-out;
+  transition: all .5s ease-out;
+         }
+          .input{
+            width:75%;
+            height:100px;
+            line-height: 100px;
+            display: inline-block;
+            font-size: 30px;
+            text-align: center;
+            padding: 0;
+            border: none;
+            outline:medium;
+            float:left;
+            background-color:   #FFFACD;
+            color:black;
+          }
+           .input_remind{
+            display: inline-block;
+            width:25%;
+            height:100px;
+            line-height:100px;
+            font-size: 30px;
+            text-align: center;
+            background-color: #FFC125;
+            left: 0px;
+            float:left;
+          }
+           #query{
+             width:60%;
+             height:60px;
+             line-height: 60px;
+             border-radius: 10px;
+             display:block;
+             font-size: 25px;
+             background-color: #FFB90F;
+             font-weight: bold;
+             text-align: center;
+             margin:auto;
+          }
+         #query:hover{
+          -webkit-box-shadow: 0 0 10px #999;
+            box-shadow: 0 0 10px #999;
+            font-size: 28px;
+         }
+          ul,li{
+         list-style: none;
+      }
+         /*#inputBox ul{*/
+             /*padding:0;*/
+         /*}*/
+           #footer{
+            width:90%;
+            font-size:25px;
+            background-color:rgba(255,236,139,0.9);
+            -webkit-box-shadow: 0 0 10px #999;
+            box-shadow: 0 0 10px #999;
+            border-radius: 10px;
+            margin:auto;
+          }
+      #footer p{
+          margin: 0;padding-bottom: 1em; margin-left: 2em; text-align:left;
+      }
+      ul#three-clean-buttons-freebie { display: table; list-style: none; margin: 0 auto; padding: 0; }
+      ul#three-clean-buttons-freebie > li { float: left; margin-right: 20px; margin-bottom: 20px; padding: 10px 10px; }
+      ul#three-clean-buttons-freebie > li:last-child { margin-right: 0; }
+      ul#three-clean-buttons-freebie > li > span { margin-bottom: 10px; }
+    </style>
+	<body>
+    <script type="text/javascript">
+            window.onload=function(){
+                $("#beep-two")[0].play();
+             var username= document.getElementById("username"),
+                 password= document.getElementById("password"),
+                 del=document.getElementById("del"),
+                 clearAll=document.getElementById("clearAll"),
+                 circleBtn=document.getElementsByClassName("circleBtn"),
+                 flag=0;
+             console.log(circleBtn.length);
+              username.focus();
+              username.style.borderColor="yellow";
+               username.onclick=function(){
+                  username.style.border="1px yellow solid";
+                  password.style.border=null;
+                }
+                password.onclick=function(){
+                  password.style.border="1px yellow solid";
+                  username.style.border=null;
+                }
+             for(var i=0;i<circleBtn.length;i++){
+                circleBtn[i].onclick=function(){
+                  if(username.style.borderColor=="yellow"){
+                   username.value+=this.value;
+                      username.focus();
+                  }else if(password.style.borderColor=="yellow"){
+                     password.value+=this.value;
+                     password.focus();
+                    }
+                  }
+                }
+                //删除
+                del1.onclick=function(){
+                  if(username.style.borderColor=="yellow"){
+                    var newinnerHTML=username.value.substring(0,username.value.length-1);
+                           username.value=newinnerHTML;
+          
+                  }else if(password.style.borderColor=="yellow"){
+                      var newinnerHTML=password.value.substring(0,password.value.length-1);
+                          password.value=newinnerHTML;
+                    }
+            
+               }
+                del2.onclick=function(){
+                    if(username.style.borderColor=="yellow"){
+                        var newinnerHTML=username.value.substring(0,username.value.length-1);
+                        username.value=newinnerHTML;
+
+                    }else if(password.style.borderColor=="yellow"){
+                        var newinnerHTML=password.value.substring(0,password.value.length-1);
+                        password.value=newinnerHTML;
+                    }
+
+                }
+           //清空
+              clearAll1.onmouseup=function(){
+                if(username.style.borderColor=="yellow"){
+                   username.value=null;
+                  }else if(password.style.borderColor=="yellow"){
+                     password.value=null;
+                  }
+                }
+                clearAll2.onmouseup=function(){
+                    if(username.style.borderColor=="yellow"){
+                        username.value=null;
+                    }else if(password.style.borderColor=="yellow"){
+                        password.value=null;
+                    }
+                }
+                //键盘的显示隐藏
+                $("#showBlock").click(function(){
+                    console.log(222);
+                    if(flag==0){
+                        $("#showBlock").text("隐藏键盘");
+                        $("#showBox").css("marginLeft","2%");
+                        $(".softkeyboard").css("display","block");
+                        flag=1;
+                    }else{
+                        $("#showBlock").text("弹出键盘");
+                        $("#showBox").css("marginLeft","30%");
+                        $(".softkeyboard").css("display","none");
+                        flag=0;
+                    }
+                });
+               // 定时退出
+                (function($){
+                    funObj = {
+                        timeUserFun:'timeUserFun',
+                    }
+                    $[funObj.timeUserFun] = function(time){
+                        var time = time || 2;
+                        var userTime = time*60;
+                        var objTime = {
+                            init:0,
+                            time:function(){
+                                objTime.init += 1;
+                                if(objTime.init == userTime){
+                                    window.location.href="newRetire.html";
+                                }
+                            },
+                            eventFun:function(){
+                                clearInterval(testUser);
+                                objTime.init = 0;
+                                testUser = setInterval(objTime.time,1000);
+                            }
+                        }
+                        var testUser = setInterval(objTime.time,1000);
+                        var body = document.querySelector('html');
+                        body.addEventListener("click",objTime.eventFun);
+                        body.addEventListener("keydown",objTime.eventFun);
+                        body.addEventListener("mousemove",objTime.eventFun);
+                        body.addEventListener("mousewheel",objTime.eventFun);
+                    }
+                })(window)
+                timeUserFun(1);
+}
+    </script>
+		<div id="header">
+			<div  id="title_picture"></div>
+            <div id="title_name">武汉理工大学离退休人员工资自助查询机</div>
+		</div>
+    <audio id="beep-two"  preload="auto" height="0px"; width="0px"; >
+        <source src="audio/shuru.mp3" controls></source>
+        <!--<source src="/audio/beep.ogg" controls></source>-->
+    </audio>
+		<div id="content">
+      <h1 class="i_button" type="button" onclick="history.back()" style="width: 180px; display: block;height: 50px; opacity: 1;  background-color: rgba(255,126,0,1);border: 1px solid #ddd;box-shadow: 2px 4px 5px #888888;"> <返回 </h1>
+            <form id="showBox" method="post">
+                <div class="w" id="cardNum">
+                    <div class="wrap">
+                        <div class="input_remind">卡号:</div><input id="username"  onkeypress="if(event.keyCode==13){
+                            password.focus();
+                        password.style.border='1px yellow solid';
+                        username.style.border=null;
+                }" type="text" style="text-decoration:none" class="input" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="w">
+                    <div class="wrap">
+                        <div class="input_remind">密码:</div><input id="password"  onkeypress="if(event.keyCode==13){check()}" type="password" class="input" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="button" id="query" onclick="check()">查询</div>
+                <ul id="three-clean-buttons-freebie">
+                    <li>
+                        <div class="three-clean-buttons">
+                            <div class="clean-button">
+                                <span id="showBlock" class="text">弹出键盘</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+		</div>
+    <footer id="footer">
+        <b> 登录说明:</b>
+        <p>1.请使用读取【校园卡】或输入校园卡号和密码【默认身份证后六位】的方式进行查询</p>
+        <p>2.如果存在不能登陆或者查询结果有误的情况，请联系离退休处工作人员</p>
+    </footer>
+
+     <script type="text/javascript">
+         // window.onload = function() {
+         //     $("#beep-two")[0].play();
+         // }
+        function check() {
+            var cardNum = $("#username").val();
+            var cardPassword = $("#password").val();
+
+            if (cardNum=="" || cardPassword==""){
+                alert("卡号或密码不能为空","3000");
+                return false;
+            }
+            else {
+                alert("查询中请稍等","1000");
+                $.ajax({
+                    url:"user/check_login.do",
+                    type:'POST',
+                    data:{accountNo:cardNum,password:cardPassword},
+                    success:function (data) {
+                        if (data.status==0){
+                            sessionStorage.setItem("username", cardNum);
+                            sessionStorage.setItem("userpassword", cardPassword);
+                               window.location.href="data_Table.html?2";
+                        }
+                        else if(data.status==1){
+                            alert("卡号或密码输入错误","3000");
+                        }else {
+                            alert("没有查询到您的工资信息","3000");
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+	</body>
+</html>

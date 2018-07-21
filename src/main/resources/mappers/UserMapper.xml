@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.test.pojo.User" >
+    <constructor >
+      <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="year" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="month" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="money" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lifeSub" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="retirementSub" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="houseSub" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="labourSub" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="rescueSub" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="goverSub" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="propertySub" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nurseMoney" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="workSub" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reissue" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="relief" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="insurance16" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="insurance17" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sum" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="waterCost" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="electricCost" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="rent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="otherRent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="realSum" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.test.pojo.User" >
+    insert into V_LTX_GZXX (code, username, year, 
+      month, money, lifeSub, 
+      retirementSub, houseSub, labourSub, 
+      rescueSub, goverSub, propertySub, 
+      nurseMoney, workSub, reissue, 
+      relief, insurance16, insurance17, 
+      sum, waterCost, electricCost, 
+      rent, otherRent, realSum, 
+      email)
+    values (#{code,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, 
+      #{month,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, #{lifesub,jdbcType=VARCHAR}, 
+      #{retirementsub,jdbcType=VARCHAR}, #{housesub,jdbcType=VARCHAR}, #{laboursub,jdbcType=VARCHAR}, 
+      #{rescuesub,jdbcType=VARCHAR}, #{goversub,jdbcType=VARCHAR}, #{propertysub,jdbcType=VARCHAR}, 
+      #{nursemoney,jdbcType=VARCHAR}, #{worksub,jdbcType=VARCHAR}, #{reissue,jdbcType=VARCHAR}, 
+      #{relief,jdbcType=VARCHAR}, #{insurance16,jdbcType=VARCHAR}, #{insurance17,jdbcType=VARCHAR}, 
+      #{sum,jdbcType=VARCHAR}, #{watercost,jdbcType=VARCHAR}, #{electriccost,jdbcType=VARCHAR}, 
+      #{rent,jdbcType=VARCHAR}, #{otherrent,jdbcType=VARCHAR}, #{realsum,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.pojo.User" >
+    insert into V_LTX_GZXX
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="lifesub != null" >
+        lifeSub,
+      </if>
+      <if test="retirementsub != null" >
+        retirementSub,
+      </if>
+      <if test="housesub != null" >
+        houseSub,
+      </if>
+      <if test="laboursub != null" >
+        labourSub,
+      </if>
+      <if test="rescuesub != null" >
+        rescueSub,
+      </if>
+      <if test="goversub != null" >
+        goverSub,
+      </if>
+      <if test="propertysub != null" >
+        propertySub,
+      </if>
+      <if test="nursemoney != null" >
+        nurseMoney,
+      </if>
+      <if test="worksub != null" >
+        workSub,
+      </if>
+      <if test="reissue != null" >
+        reissue,
+      </if>
+      <if test="relief != null" >
+        relief,
+      </if>
+      <if test="insurance16 != null" >
+        insurance16,
+      </if>
+      <if test="insurance17 != null" >
+        insurance17,
+      </if>
+      <if test="sum != null" >
+        sum,
+      </if>
+      <if test="watercost != null" >
+        waterCost,
+      </if>
+      <if test="electriccost != null" >
+        electricCost,
+      </if>
+      <if test="rent != null" >
+        rent,
+      </if>
+      <if test="otherrent != null" >
+        otherRent,
+      </if>
+      <if test="realsum != null" >
+        realSum,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="lifesub != null" >
+        #{lifesub,jdbcType=VARCHAR},
+      </if>
+      <if test="retirementsub != null" >
+        #{retirementsub,jdbcType=VARCHAR},
+      </if>
+      <if test="housesub != null" >
+        #{housesub,jdbcType=VARCHAR},
+      </if>
+      <if test="laboursub != null" >
+        #{laboursub,jdbcType=VARCHAR},
+      </if>
+      <if test="rescuesub != null" >
+        #{rescuesub,jdbcType=VARCHAR},
+      </if>
+      <if test="goversub != null" >
+        #{goversub,jdbcType=VARCHAR},
+      </if>
+      <if test="propertysub != null" >
+        #{propertysub,jdbcType=VARCHAR},
+      </if>
+      <if test="nursemoney != null" >
+        #{nursemoney,jdbcType=VARCHAR},
+      </if>
+      <if test="worksub != null" >
+        #{worksub,jdbcType=VARCHAR},
+      </if>
+      <if test="reissue != null" >
+        #{reissue,jdbcType=VARCHAR},
+      </if>
+      <if test="relief != null" >
+        #{relief,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance16 != null" >
+        #{insurance16,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance17 != null" >
+        #{insurance17,jdbcType=VARCHAR},
+      </if>
+      <if test="sum != null" >
+        #{sum,jdbcType=VARCHAR},
+      </if>
+      <if test="watercost != null" >
+        #{watercost,jdbcType=VARCHAR},
+      </if>
+      <if test="electriccost != null" >
+        #{electriccost,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null" >
+        #{rent,jdbcType=VARCHAR},
+      </if>
+      <if test="otherrent != null" >
+        #{otherrent,jdbcType=VARCHAR},
+      </if>
+      <if test="realsum != null" >
+        #{realsum,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="listUser" resultMap="BaseResultMap" parameterType="String">
+    SELECT * FROM V_LTX_GZXX vt
+    WHERE "code"=#{code}
+  </select>
+</mapper>

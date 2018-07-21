@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.PrintMapper" >
+  <resultMap id="BaseResultMap" type="com.test.pojo.Print" >
+    <constructor >
+      <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="year" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="month" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="count" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.test.pojo.Print" >
+    insert into "print" ("code","year","month","count")
+    values ( #{code,jdbcType=VARCHAR},#{year,jdbcType=VARCHAR},#{month,jdbcType=VARCHAR}, #{count,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectByCode" resultMap="BaseResultMap"  parameterType="map">
+    SELECT *
+    FROM  "print"
+    where "code"=#{code} and "year"=#{year} and "month"=#{month}
+  </select>
+  <select id="selectCode" resultMap="BaseResultMap" parameterType="string">
+    SELECT * FROM  "print"
+    WHERE "code"=#{code}
+  </select>
+</mapper>
